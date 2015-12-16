@@ -271,6 +271,7 @@ int main(int argc, char** argv) {
 
     LOG("Closing client");
     close(sock);
+    fclose(src_file);
 
     if (LOGGER_CONFIG.log_file)
         fclose(LOGGER_CONFIG.log_file);

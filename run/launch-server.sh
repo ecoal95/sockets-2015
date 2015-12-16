@@ -51,8 +51,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # SERVER_PID=`pidof "$SERVER"`
-SERVER_NAME=`basename "$SERVER"`
-SERVER_PID=`pgrep -x "$SERVER_NAME"`
+SERVER_PID=`pgrep -f "$SERVER"`
 if [ $? -ne 0 ]; then
   echo "run: running server not found, aborting..."
   exit 1

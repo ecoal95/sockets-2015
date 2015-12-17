@@ -18,7 +18,7 @@
 
 CFLAGS := -std=c99 -Wall -pedantic -D_REENTRANT -D__USE_XOPEN -D_XOPEN_SOURCE=600
 CLINKFLAGS := -pthread
-PANDOC_FLAGS := --toc --filter pandoc-crossref
+PANDOC_FLAGS := --toc
 UNAME := $(shell uname)
 
 # Workaround for buggy C compiler in required targets (encina and olivo/SunOS)
@@ -93,7 +93,7 @@ bundle:
 	# Ensure everything is passing before bundling everything
 	$(MAKE) --quiet clean-binaries binaries test release test docs > /dev/null 2>&1
 	git archive HEAD . -o $(BUNDLE_NAME).tar
-	tar -r $(DOC_TARGETS) -f $(BUNDLE_NAME).tar
+	tar -r -f $(BUNDLE_NAME).tar $(DOC_TARGETS)
 	gzip -f $(BUNDLE_NAME).tar
 	git archive HEAD . -o $(BUNDLE_NAME).zip
 	zip $(BUNDLE_NAME).zip $(DOC_TARGETS)

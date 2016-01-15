@@ -224,7 +224,7 @@ int main(int argc, char** argv) {
 
         /// The server always replies with and ending null char, that should
         /// not be present in the body response
-        recv_size = recvfrom(sock, buff, SIZE, 0, &from_addr, &from_size);
+        recv_size = recvfrom(sock, buff, SIZE - 1, 0, &from_addr, &from_size);
 
         if (recv_size < 0) {
             WARN("Recv error: %s", strerror(errno));
